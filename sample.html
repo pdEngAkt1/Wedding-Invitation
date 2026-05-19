@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#0f172a">
+	<title>Wedding Invitation</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--bg: #0f172a;
+			--bg-soft: #1e293b;
+			--card: rgba(255, 248, 240, 0.1);
+			--card-border: rgba(255, 255, 255, 0.15);
+			--text: #fff9f2;
+			--muted: rgba(255, 249, 242, 0.78);
+			--gold: #f7c873;
+			--gold-soft: #ffe7b2;
+			--rose: #ef9a9a;
+			--shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			margin: 0;
+			min-height: 100vh;
+			font-family: 'Inter', sans-serif;
+			color: var(--text);
+			background:
+				radial-gradient(circle at top, rgba(247, 200, 115, 0.2), transparent 28%),
+				radial-gradient(circle at left bottom, rgba(239, 154, 154, 0.16), transparent 24%),
+				linear-gradient(135deg, #07111f 0%, #0f172a 42%, #1c2438 100%);
+			overflow-x: hidden;
+		}
+
+		body::before,
+		body::after {
+			content: '';
+			position: fixed;
+			inset: auto;
+			width: 28rem;
+			height: 28rem;
+			border-radius: 50%;
+			filter: blur(80px);
+			opacity: 0.35;
+			pointer-events: none;
+		}
+
+		body::before {
+			top: -8rem;
+			right: -6rem;
+			background: rgba(247, 200, 115, 0.28);
+			animation: drift 14s ease-in-out infinite;
+		}
+
+		body::after {
+			bottom: -10rem;
+			left: -8rem;
+			background: rgba(239, 154, 154, 0.24);
+			animation: drift 16s ease-in-out infinite reverse;
+		}
+
+		.shell {
+			position: relative;
+			min-height: 100vh;
+			padding: 24px;
+			display: grid;
+			place-items: center;
+		}
+
+		.invitation {
+			position: relative;
+			width: min(100%, 1080px);
+			border: 1px solid var(--card-border);
+			border-radius: 32px;
+			background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+			box-shadow: var(--shadow);
+			backdrop-filter: blur(18px);
+			overflow: hidden;
+		}
+
+		.invitation::before {
+			content: '';
+			position: absolute;
+			inset: 14px;
+			border-radius: 24px;
+			border: 1px solid rgba(255, 231, 178, 0.18);
+			pointer-events: none;
+		}
+
+		.top-glow {
+			position: absolute;
+			inset: 0;
+			background:
+				radial-gradient(circle at 20% 15%, rgba(255, 231, 178, 0.18), transparent 22%),
+				radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.12), transparent 18%),
+				radial-gradient(circle at 50% 95%, rgba(239, 154, 154, 0.12), transparent 24%);
+			pointer-events: none;
+		}
+
+		.content {
+			position: relative;
+			z-index: 1;
+			display: grid;
+			grid-template-columns: 1.2fr 0.8fr;
+			gap: 28px;
+			padding: clamp(28px, 5vw, 56px);
+		}
+
+		.eyebrow {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			padding: 10px 16px;
+			border-radius: 999px;
+			color: var(--gold-soft);
+			background: rgba(255, 255, 255, 0.08);
+			border: 1px solid rgba(255, 231, 178, 0.18);
+			letter-spacing: 0.18em;
+			text-transform: uppercase;
+			font-size: 0.74rem;
+			animation: fadeUp 900ms ease both;
+		}
+
+		.title {
+			margin: 18px 0 14px;
+			font-family: 'Cormorant Garamond', serif;
+			font-size: clamp(3.4rem, 8vw, 7rem);
+			line-height: 0.92;
+			letter-spacing: 0.02em;
+			animation: fadeUp 900ms ease 120ms both;
+		}
+
+		.title span {
+			display: block;
+			color: var(--gold);
+			text-shadow: 0 0 28px rgba(247, 200, 115, 0.3);
+		}
+
+		.subtitle {
+			max-width: 42rem;
+			color: var(--muted);
+			font-size: 1.02rem;
+			line-height: 1.8;
+			animation: fadeUp 900ms ease 220ms both;
+		}
+
+		.names {
+			margin: 28px 0 0;
+			font-family: 'Cormorant Garamond', serif;
+			font-size: clamp(1.8rem, 4vw, 3rem);
+			font-weight: 600;
+			color: #fffaf1;
+			animation: fadeUp 900ms ease 320ms both;
+		}
+
+		.divider {
+			width: 140px;
+			height: 1px;
+			margin: 28px 0;
+			background: linear-gradient(90deg, transparent, rgba(255, 231, 178, 0.9), transparent);
+			animation: shimmer 3s ease-in-out infinite;
+		}
+
+		.details-grid {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 14px;
+			margin-top: 18px;
+		}
+
+		.detail-card,
+		.info-card,
+		.contact-card {
+			border: 1px solid rgba(255, 255, 255, 0.12);
+			background: rgba(15, 23, 42, 0.42);
+			border-radius: 22px;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+		}
+
+		.detail-card {
+			padding: 16px;
+			animation: floatUp 6s ease-in-out infinite;
+		}
+
+		.detail-card:nth-child(2) {
+			animation-delay: 0.5s;
+		}
+
+		.detail-card:nth-child(3) {
+			animation-delay: 1s;
+		}
+
+		.label {
+			display: block;
+			margin-bottom: 6px;
+			color: rgba(255, 231, 178, 0.82);
+			font-size: 0.74rem;
+			text-transform: uppercase;
+			letter-spacing: 0.16em;
+		}
+
+		.value {
+			font-size: 1rem;
+			line-height: 1.5;
+			color: #fffaf1;
+		}
+
+		.side {
+			display: grid;
+			gap: 18px;
+			align-content: start;
+		}
+
+		.hero-card {
+			position: relative;
+			min-height: 100%;
+			padding: 22px;
+			overflow: hidden;
+			isolation: isolate;
+		}
+
+		.hero-card::before {
+			content: '';
+			position: absolute;
+			inset: -30% auto auto 50%;
+			width: 260px;
+			height: 260px;
+			background: radial-gradient(circle, rgba(247, 200, 115, 0.25), transparent 68%);
+			transform: translateX(-50%);
+			z-index: -1;
+			animation: pulse 5s ease-in-out infinite;
+		}
+
+		.ornament {
+			width: 120px;
+			height: 120px;
+			margin: 0 auto 22px;
+			border-radius: 50%;
+			border: 1px solid rgba(255, 231, 178, 0.22);
+			background:
+				radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), transparent 22%),
+				radial-gradient(circle at 70% 30%, rgba(247, 200, 115, 0.9), transparent 18%),
+				radial-gradient(circle at 50% 75%, rgba(239, 154, 154, 0.65), transparent 16%),
+				linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.02));
+			box-shadow: 0 0 40px rgba(255, 231, 178, 0.12);
+			animation: orbit 12s linear infinite;
+		}
+
+		.hero-copy {
+			text-align: center;
+		}
+
+		.hero-copy h2 {
+			margin: 0;
+			font-family: 'Cormorant Garamond', serif;
+			font-size: 2.2rem;
+			line-height: 1.1;
+		}
+
+		.hero-copy p {
+			margin: 14px 0 0;
+			color: var(--muted);
+			line-height: 1.7;
+		}
+
+		.countdown {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 12px;
+			margin-top: 16px;
+		}
+
+		.countdown div {
+			padding: 14px 10px;
+			border-radius: 18px;
+			text-align: center;
+			background: rgba(255, 255, 255, 0.08);
+			border: 1px solid rgba(255, 255, 255, 0.12);
+		}
+
+		.countdown strong {
+			display: block;
+			font-size: 1.5rem;
+			color: var(--gold);
+		}
+
+		.countdown span {
+			font-size: 0.74rem;
+			text-transform: uppercase;
+			letter-spacing: 0.14em;
+			color: var(--muted);
+		}
+
+		.actions {
+			display: grid;
+			gap: 12px;
+			margin-top: 8px;
+		}
+
+		.contact-card {
+			padding: 18px;
+			animation: fadeUp 900ms ease 240ms both;
+		}
+
+		.contact-card h3 {
+			margin: 0 0 8px;
+			font-size: 1rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: var(--gold-soft);
+		}
+
+		.contact-card p {
+			margin: 0 0 16px;
+			color: var(--muted);
+			line-height: 1.65;
+		}
+
+		.btn-row {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 10px;
+		}
+
+		.btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			padding: 14px 16px;
+			border-radius: 16px;
+			text-decoration: none;
+			color: #07111f;
+			font-weight: 700;
+			background: linear-gradient(135deg, #ffe7b2, #f7c873);
+			box-shadow: 0 10px 24px rgba(247, 200, 115, 0.24);
+			transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+		}
+
+		.btn:nth-child(2) {
+			background: linear-gradient(135deg, #ffb8b8, #ef9a9a);
+		}
+
+		.btn:nth-child(3) {
+			background: linear-gradient(135deg, #cfe9ff, #9cc8ff);
+		}
+
+		.btn:hover {
+			transform: translateY(-3px) scale(1.01);
+			filter: brightness(1.03);
+			box-shadow: 0 16px 28px rgba(0, 0, 0, 0.25);
+		}
+
+		.footer-note {
+			margin-top: 16px;
+			color: rgba(255, 249, 242, 0.65);
+			font-size: 0.9rem;
+		}
+
+		.petals {
+			position: fixed;
+			inset: 0;
+			pointer-events: none;
+			overflow: hidden;
+			z-index: 0;
+		}
+
+		.petal {
+			position: absolute;
+			top: -10vh;
+			width: 14px;
+			height: 22px;
+			border-radius: 100% 0 100% 0;
+			background: linear-gradient(135deg, rgba(255, 231, 178, 0.95), rgba(239, 154, 154, 0.6));
+			opacity: 0.72;
+			filter: blur(0.2px);
+			animation: fall linear infinite;
+		}
+
+		.petal:nth-child(1) { left: 8%; animation-duration: 14s; animation-delay: 0s; }
+		.petal:nth-child(2) { left: 16%; animation-duration: 18s; animation-delay: 2s; }
+		.petal:nth-child(3) { left: 28%; animation-duration: 16s; animation-delay: 4s; }
+		.petal:nth-child(4) { left: 42%; animation-duration: 19s; animation-delay: 1s; }
+		.petal:nth-child(5) { left: 56%; animation-duration: 17s; animation-delay: 3s; }
+		.petal:nth-child(6) { left: 68%; animation-duration: 15s; animation-delay: 5s; }
+		.petal:nth-child(7) { left: 79%; animation-duration: 18s; animation-delay: 2.5s; }
+		.petal:nth-child(8) { left: 91%; animation-duration: 16s; animation-delay: 6s; }
+
+		.sparkle {
+			position: absolute;
+			inset: auto;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: rgba(255, 255, 255, 0.9);
+			box-shadow: 0 0 18px rgba(255, 255, 255, 0.6);
+			animation: twinkle 4s ease-in-out infinite;
+		}
+
+		.sparkle.one { top: 12%; left: 18%; }
+		.sparkle.two { top: 22%; right: 16%; animation-delay: 1.5s; }
+		.sparkle.three { bottom: 18%; left: 10%; animation-delay: 2.2s; }
+
+		@keyframes fadeUp {
+			from {
+				opacity: 0;
+				transform: translateY(18px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes drift {
+			0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+			50% { transform: translate3d(18px, 18px, 0) scale(1.08); }
+		}
+
+		@keyframes shimmer {
+			0%, 100% { opacity: 0.45; transform: scaleX(0.92); }
+			50% { opacity: 1; transform: scaleX(1); }
+		}
+
+		@keyframes pulse {
+			0%, 100% { transform: translateX(-50%) scale(0.92); opacity: 0.65; }
+			50% { transform: translateX(-50%) scale(1.08); opacity: 1; }
+		}
+
+		@keyframes orbit {
+			from { transform: rotate(0deg); }
+			to { transform: rotate(360deg); }
+		}
+
+		@keyframes floatUp {
+			0%, 100% { transform: translateY(0); }
+			50% { transform: translateY(-8px); }
+		}
+
+		@keyframes twinkle {
+			0%, 100% { transform: scale(0.8); opacity: 0.45; }
+			50% { transform: scale(1.2); opacity: 1; }
+		}
+
+		@keyframes fall {
+			0% {
+				transform: translate3d(0, -12vh, 0) rotate(0deg);
+			}
+			100% {
+				transform: translate3d(30px, 112vh, 0) rotate(240deg);
+			}
+		}
+
+		@media (max-width: 920px) {
+			.content {
+				grid-template-columns: 1fr;
+			}
+
+			.details-grid,
+			.btn-row,
+			.countdown {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+		}
+
+		@media (max-width: 620px) {
+			.shell {
+				padding: 14px;
+			}
+
+			.invitation {
+				border-radius: 24px;
+			}
+
+			.content {
+				padding: 22px;
+				gap: 20px;
+			}
+
+			.details-grid,
+			.btn-row,
+			.countdown {
+				grid-template-columns: 1fr;
+			}
+
+			.title {
+				font-size: clamp(2.9rem, 16vw, 4.8rem);
+			}
+
+			.hero-copy h2 {
+				font-size: 1.8rem;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			*, *::before, *::after {
+				animation: none !important;
+				transition: none !important;
+				scroll-behavior: auto !important;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="petals" aria-hidden="true">
+		<span class="petal"></span>
+		<span class="petal"></span>
+		<span class="petal"></span>
+		<span class="petal"></span>
+		<span class="petal"></span>
+		<span class="petal"></span>
+		<span class="petal"></span>
+		<span class="petal"></span>
+	</div>
+
+	<main class="shell">
+		<section class="invitation" aria-label="Wedding invitation">
+			<div class="top-glow"></div>
+			<span class="sparkle one"></span>
+			<span class="sparkle two"></span>
+			<span class="sparkle three"></span>
+
+			<div class="content">
+				<div>
+					<div class="eyebrow">With joy and blessings</div>
+					<h1 class="title">
+						You're Invited
+						<span>To Our Wedding</span>
+					</h1>
+					<p class="subtitle">
+						Join us as we celebrate love, family, and a beautiful new beginning.
+						Your presence will make our special day even more memorable.
+					</p>
+
+					<div class="divider"></div>
+
+					<div class="names">Aarav & Meera</div>
+
+					<div class="details-grid" aria-label="Event details">
+						<article class="detail-card">
+							<span class="label">Date</span>
+							<div class="value">Saturday, 18 July 2026</div>
+						</article>
+						<article class="detail-card">
+							<span class="label">Time</span>
+							<div class="value">6:00 PM onwards</div>
+						</article>
+						<article class="detail-card">
+							<span class="label">Venue</span>
+							<div class="value">The Grand Lotus Banquet, Jaipur</div>
+						</article>
+					</div>
+				</div>
+
+				<aside class="side">
+					<article class="info-card hero-card">
+						<div class="ornament"></div>
+						<div class="hero-copy">
+							<h2>Celebrate a night of warmth, music, and timeless memories.</h2>
+							<p>
+								Dress in your festive best and come ready for an evening filled with
+								heartfelt moments and joyful dancing.
+							</p>
+
+							<div class="countdown" aria-label="Countdown to wedding day">
+								<div>
+									<strong>18</strong>
+									<span>Days</span>
+								</div>
+								<div>
+									<strong>06</strong>
+									<span>Hours</span>
+								</div>
+								<div>
+									<strong>24</strong>
+									<span>Mins</span>
+								</div>
+								<div>
+									<strong>59</strong>
+									<span>Secs</span>
+								</div>
+							</div>
+						</div>
+					</article>
+
+					<article class="contact-card">
+						<h3>Contact Us</h3>
+						<p>
+							Tap any button below to reach us directly for RSVP, directions, or venue help.
+						</p>
+						<div class="btn-row">
+							<a class="btn" href="tel:+911234567890">Call</a>
+							<a class="btn" href="https://wa.me/911234567890" target="_blank" rel="noreferrer">WhatsApp</a>
+							<a class="btn" href="mailto:rsvp@example.com">Email</a>
+						</div>
+						<div class="footer-note">Replace the phone number and email with your real contact details.</div>
+					</article>
+				</aside>
+			</div>
+		</section>
+	</main>
+</body>
+</html>
