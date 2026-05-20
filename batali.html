@@ -1,13 +1,1107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Batali cds</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Responsive Wedding Invitation</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow-x:hidden;
+
+    background:
+    radial-gradient(circle at top left,#00153a,#020817 40%),
+    radial-gradient(circle at bottom right,#37233f,#020817 40%);
+
+    position:relative;
+    color:white;
+
+    padding:40px 20px;
+}
+
+/* =========================
+BACKGROUND GLOW
+========================= */
+
+body::before{
+    content:'';
+    position:absolute;
+    width:900px;
+    height:900px;
+
+    background:
+    radial-gradient(circle,
+    rgba(255,196,0,0.08),
+    transparent 70%);
+
+    top:-300px;
+    right:-200px;
+
+    animation:glowMove 8s ease-in-out infinite alternate;
+}
+
+@keyframes glowMove{
+
+    from{
+        transform:translateY(0px);
+    }
+
+    to{
+        transform:translateY(40px);
+    }
+}
+
+/* =========================
+FLOATING PARTICLES
+========================= */
+
+.particle{
+    position:absolute;
+    width:14px;
+    height:14px;
+    background:#f7d7b3;
+    border-radius:50%;
+    opacity:0.7;
+    filter:blur(1px);
+
+    animation:float 10s infinite linear;
+}
+
+.p1{
+    top:10%;
+    left:8%;
+}
+
+.p2{
+    top:40%;
+    left:15%;
+    animation-duration:12s;
+}
+
+.p3{
+    bottom:10%;
+    right:8%;
+    animation-duration:14s;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px) rotate(0deg);
+    }
+
+    50%{
+        transform:translateY(-30px) rotate(180deg);
+    }
+
+    100%{
+        transform:translateY(0px) rotate(360deg);
+    }
+}
+
+/* =========================
+CONTAINER
+========================= */
+
+.container{
+    width:1300px;
+    max-width:100%;
+    position:relative;
+    z-index:10;
+}
+
+/* =========================
+CARD
+========================= */
+
+.card{
+
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:25px;
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    border-radius:35px;
+
+    padding:40px;
+
+    backdrop-filter:blur(25px);
+
+    box-shadow:
+    0 0 40px rgba(0,0,0,0.4),
+    inset 0 0 25px rgba(255,255,255,0.03);
+
+    position:relative;
+    overflow:hidden;
+
+    animation:fadeUp 1.2s ease;
+}
+
+.card::before{
+
+    content:'';
+
+    position:absolute;
+
+    inset:15px;
+
+    border-radius:25px;
+
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+LEFT SECTION
+========================= */
+
+.left{
+    position:relative;
+    z-index:2;
+}
+
+.tag{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    border-radius:40px;
+
+    font-size:14px;
+
+    letter-spacing:3px;
+
+    color:#e9d6a8;
+
+    margin-bottom:30px;
+}
+
+.hero-title{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:110px;
+
+    line-height:0.95;
+
+    font-weight:600;
+
+    margin-bottom:30px;
+}
+
+.gold{
+    color:#f0c46b;
+}
+
+.description{
+
+    max-width:650px;
+
+    color:#d0d0d0;
+
+    line-height:1.8;
+
+    font-size:21px;
+
+    margin-bottom:40px;
+}
+
+.line{
+
+    width:120px;
+
+    height:1px;
+
+    background:rgba(255,255,255,0.2);
+
+    margin-bottom:40px;
+}
+
+.couple{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:70px;
+
+    margin-bottom:30px;
+}
+
+/* =========================
+INFO GRID
+========================= */
+
+.info-grid{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+}
+
+.info-box{
+
+    flex:1;
+
+    min-width:220px;
+
+    padding:25px;
+
+    border-radius:25px;
+
+    background:rgba(8,15,40,0.5);
+
+    border:1px solid rgba(255,255,255,0.1);
+
+    transition:0.4s;
+}
+
+.info-box:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 0 20px rgba(255,215,100,0.15);
+}
+
+.info-title{
+
+    color:#e3c98a;
+
+    font-size:13px;
+
+    letter-spacing:3px;
+
+    margin-bottom:10px;
+
+    font-weight:600;
+}
+
+.info-text{
+
+    font-size:24px;
+
+    line-height:1.5;
+}
+
+/* =========================
+RIGHT SECTION
+========================= */
+
+.right{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+    z-index:2;
+}
+
+.side-card{
+
+    background:rgba(12,18,45,0.55);
+
+    border-radius:30px;
+
+    padding:35px;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+/* =========================
+TOP CIRCLE
+========================= */
+
+.circle{
+
+    width:140px;
+
+    height:140px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    margin:auto;
+
+    margin-bottom:30px;
+
+    position:relative;
+}
+
+.ball{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(2px);
+
+    animation:pulse 3s infinite;
+}
+
+.ball1{
+
+    width:28px;
+    height:28px;
+
+    background:#ffb3b3;
+
+    top:20px;
+    left:35px;
+}
+
+.ball2{
+
+    width:38px;
+    height:38px;
+
+    background:#ffffff;
+
+    top:40px;
+    right:20px;
+
+    animation-delay:1s;
+}
+
+.ball3{
+
+    width:30px;
+    height:30px;
+
+    background:#ffd76b;
+
+    bottom:25px;
+    left:35px;
+
+    animation-delay:2s;
+}
+
+@keyframes pulse{
+
+    0%,100%{
+        transform:scale(1);
+        opacity:0.8;
+    }
+
+    50%{
+        transform:scale(1.2);
+        opacity:1;
+    }
+}
+
+/* =========================
+RIGHT CONTENT
+========================= */
+
+.side-title{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:52px;
+
+    text-align:center;
+
+    line-height:1.2;
+
+    margin-bottom:25px;
+}
+
+.side-text{
+
+    text-align:center;
+
+    line-height:1.8;
+
+    color:#d7d7d7;
+
+    font-size:20px;
+
+    margin-bottom:30px;
+}
+
+/* =========================
+COUNTDOWN
+========================= */
+
+.timer{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+}
+
+.time-box{
+
+    width:90px;
+
+    height:100px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.06);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    transition:0.4s;
+}
+
+.time-box:hover{
+    transform:scale(1.05);
+}
+
+.number{
+
+    font-size:40px;
+
+    color:#f3c96d;
+
+    font-weight:700;
+}
+
+.label{
+
+    letter-spacing:2px;
+
+    font-size:12px;
+
+    margin-top:8px;
+}
+
+/* =========================
+CONTACT
+========================= */
+
+.contact-title{
+
+    font-size:34px;
+
+    margin-bottom:20px;
+
+    color:#f0d08a;
+
+    font-family:'Cormorant Garamond',serif;
+}
+
+.contact-text{
+
+    line-height:1.8;
+
+    color:#d4d4d4;
+
+    margin-bottom:25px;
+
+    font-size:18px;
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+.buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+}
+
+.btn{
+
+    flex:1;
+
+    min-width:120px;
+
+    padding:16px 28px;
+
+    border:none;
+
+    border-radius:18px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.4s;
+}
+
+.btn:hover{
+
+    transform:translateY(-5px) scale(1.03);
+}
+
+.call{
+    background:#f3d48b;
+}
+
+.whatsapp{
+    background:#f5b1b7;
+}
+
+.email{
+    background:#cfe4ff;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media (max-width: 1400px){
+
+    .hero-title{
+        font-size:90px;
+    }
+
+    .couple{
+        font-size:55px;
+    }
+
+    .side-title{
+        font-size:42px;
+    }
+}
+
+/* TABLET */
+
+@media (max-width: 1100px){
+
+    body{
+        align-items:flex-start;
+    }
+
+    .card{
+
+        grid-template-columns:1fr;
+
+        gap:25px;
+
+        padding:30px;
+    }
+
+    .hero-title{
+        font-size:72px;
+    }
+
+    .description{
+        font-size:18px;
+    }
+
+    .couple{
+        font-size:48px;
+    }
+
+    .info-grid{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+    }
+
+    .side-title{
+        font-size:38px;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 768px){
+
+    body{
+        padding:20px 10px;
+    }
+
+    .card{
+        padding:18px;
+        border-radius:25px;
+    }
+
+    .card::before{
+        inset:10px;
+        border-radius:18px;
+    }
+
+    .tag{
+
+        font-size:11px;
+
+        letter-spacing:2px;
+
+        padding:8px 16px;
+
+        margin-bottom:20px;
+    }
+
+    .hero-title{
+
+        font-size:52px;
+
+        line-height:1;
+
+        margin-bottom:20px;
+    }
+
+    .description{
+
+        font-size:15px;
+
+        line-height:1.8;
+
+        margin-bottom:25px;
+    }
+
+    .line{
+        margin-bottom:25px;
+    }
+
+    .couple{
+
+        font-size:38px;
+
+        margin-bottom:20px;
+    }
+
+    .info-grid{
+
+        grid-template-columns:1fr;
+
+        gap:15px;
+    }
+
+    .info-box{
+
+        min-width:unset;
+
+        padding:18px;
+
+        border-radius:18px;
+    }
+
+    .info-text{
+        font-size:18px;
+    }
+
+    .side-card{
+
+        padding:22px;
+
+        border-radius:22px;
+    }
+
+    .circle{
+
+        width:110px;
+        height:110px;
+
+        margin-bottom:20px;
+    }
+
+    .side-title{
+
+        font-size:32px;
+
+        line-height:1.2;
+    }
+
+    .side-text{
+
+        font-size:15px;
+
+        line-height:1.7;
+    }
+
+    .timer{
+        gap:10px;
+    }
+
+    .time-box{
+
+        width:68px;
+        height:80px;
+
+        border-radius:16px;
+    }
+
+    .number{
+        font-size:26px;
+    }
+
+    .label{
+        font-size:10px;
+    }
+
+    .contact-title{
+        font-size:28px;
+    }
+
+    .contact-text{
+        font-size:15px;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .btn{
+
+        width:100%;
+
+        font-size:16px;
+
+        padding:14px;
+
+        border-radius:14px;
+    }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 480px){
+
+    .hero-title{
+        font-size:42px;
+    }
+
+    .couple{
+        font-size:30px;
+    }
+
+    .description{
+        font-size:14px;
+    }
+
+    .side-title{
+        font-size:26px;
+    }
+
+    .contact-title{
+        font-size:24px;
+    }
+
+    .time-box{
+
+        width:60px;
+        height:72px;
+    }
+
+    .number{
+        font-size:22px;
+    }
+}
+
+/* EXTRA SMALL */
+
+@media (max-width: 360px){
+
+    .hero-title{
+        font-size:36px;
+    }
+
+    .couple{
+        font-size:26px;
+    }
+
+    .side-title{
+        font-size:22px;
+    }
+}
+
+</style>
+
 </head>
+
 <body>
-    <h1>Tadi Bathali</h1>
-    <img src="./IMG-20260411-WA0010.jpg" alt="keta batali">
-    <img src="./IMG-20260411-WA0011.jpg" alt="keta piggi">
+
+<div class="particle p1"></div>
+<div class="particle p2"></div>
+<div class="particle p3"></div>
+
+<div class="container">
+
+    <div class="card">
+
+        <!-- LEFT -->
+
+        <div class="left">
+
+            <div class="tag">
+                WITH JOY AND BLESSINGS
+            </div>
+
+            <h1 class="hero-title">
+
+                You're <br>
+
+                Invited <br>
+
+                <span class="gold">To Our</span><br>
+
+                <span class="gold">Wedding</span>
+
+            </h1>
+
+            <p class="description">
+
+                Join us as we celebrate love, family, and a beautiful new beginning.
+                Your presence will make our special day even more memorable.
+
+            </p>
+
+            <div class="line"></div>
+
+            <div class="couple">
+                Aarav & Meera
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+
+                    <div class="info-title">
+                        DATE
+                    </div>
+
+                    <div class="info-text">
+                        Saturday, 18 July 2026
+                    </div>
+
+                </div>
+
+                <div class="info-box">
+
+                    <div class="info-title">
+                        TIME
+                    </div>
+
+                    <div class="info-text">
+                        6:00 PM onwards
+                    </div>
+
+                </div>
+
+                <div class="info-box">
+
+                    <div class="info-title">
+                        VENUE
+                    </div>
+
+                    <div class="info-text">
+                        The Grand Lotus Banquet, Jaipur
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="right">
+
+            <div class="side-card">
+
+                <div class="circle">
+
+                    <div class="ball ball1"></div>
+                    <div class="ball ball2"></div>
+                    <div class="ball ball3"></div>
+
+                </div>
+
+                <div class="side-title">
+
+                    Celebrate a night of warmth,
+                    music, and timeless memories.
+
+                </div>
+
+                <div class="side-text">
+
+                    Dress in your festive best and come ready
+                    for an evening filled with heartfelt moments
+                    and joyful dancing.
+
+                </div>
+
+                <div class="timer">
+
+                    <div class="time-box">
+
+                        <div class="number" id="days">00</div>
+
+                        <div class="label">DAYS</div>
+
+                    </div>
+
+                    <div class="time-box">
+
+                        <div class="number" id="hours">00</div>
+
+                        <div class="label">HOURS</div>
+
+                    </div>
+
+                    <div class="time-box">
+
+                        <div class="number" id="minutes">00</div>
+
+                        <div class="label">MINS</div>
+
+                    </div>
+
+                    <div class="time-box">
+
+                        <div class="number" id="seconds">00</div>
+
+                        <div class="label">SECS</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CONTACT -->
+
+            <div class="side-card">
+
+                <div class="contact-title">
+                    CONTACT US
+                </div>
+
+                <div class="contact-text">
+
+                    Tap any button below to reach us directly for RSVP,
+                    directions, or venue help.
+
+                </div>
+
+                <div class="buttons">
+
+                    <button class="btn call">
+                        Call
+                    </button>
+
+                    <button class="btn whatsapp">
+                        WhatsApp
+                    </button>
+
+                    <button class="btn email">
+                        Email
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =========================
+COUNTDOWN TIMER
+========================= */
+
+const weddingDate = new Date("July 18, 2026 18:00:00").getTime();
+
+const timer = setInterval(function(){
+
+    const now = new Date().getTime();
+
+    const distance = weddingDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+    const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24))
+        / (1000 * 60 * 60)
+    );
+
+    const minutes = Math.floor(
+        (distance % (1000 * 60 * 60))
+        / (1000 * 60)
+    );
+
+    const seconds = Math.floor(
+        (distance % (1000 * 60))
+        / 1000
+    );
+
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
+
+},1000);
+
+</script>
+
 </body>
 </html>
